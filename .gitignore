@@ -1,0 +1,6 @@
+# Project exclude paths
+/yabin_ssm_dao/target/
+/yabin_ssm_domain/target/
+/yabin_ssm_service/target/
+/yabin_ssm_utils/target/
+/yabin_ssm_web/target/
