@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:security="http://www.springframework.org/schema/security"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/security
+    http://www.springframework.org/schema/security/spring-security.xsd">
+
+    <!-- Configure resources not to be intercepted -->
+    <security:http pattern="/login.jsp" security="none"/>
+    <security:http pattern="/failure.jsp" security="none"/>
+    <security:http pattern="/css/**" security="none"/>
+    <security:http pattern="/img/**" security="none"/>
+    <security:http pattern="/plugins/**" security="none"/>
+
+    <!--
+    	Configure specific rules
+    	auto-config="true"	No need to write your own login page, the framework provides a default login page
+    	use-expressions="false"	Whether to use SPEL expression
+    -->
+    <security:http auto-config="true" use-expressions="false">
+        <!-- Configure interception rules. pattern="Request path rules" access="Role name which have permission" -->
+        <security:intercept-url pattern="/**" access="ROLE_USER,ROLE_ADMIN"/>
+
+        <!-- Define pages to jump to -->
+        <security:form-login
+                login-page="/login.jsp"
+                login-processing-url="/login.do"
+                default-target-url="/index.jsp"
+                authentication-failure-url="/failure.jsp"
+                authentication-failure-forward-url="/pages/main.jsp"
+                username-parameter="username"
+                password-parameter="password"
+
+        />
+
+        <!-- Close cross-domain request -->
+        <security:csrf disabled="true"/>
+
+        <!-- logout -->
+        <security:logout invalidate-session="true" logout-url="/logout.do" logout-success-url="/login.jsp" />
+
+    </security:http>
+
+    <!-- Use the username and password in the database for authorization -->
+    <security:authentication-manager>
+        <security:authentication-provider user-service-ref="userService">
+            <!-- Configure the encryption method -->
+<!--            <security:password-encoder ref="passwordEncoder"/>-->
+        </security:authentication-provider>
+    </security:authentication-manager>
+
+    <!-- Configure encryption class -->
+<!--    <bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>-->
+
+    <!-- A quick start way: to store username and password in memory
+    <security:authentication-manager>
+    	<security:authentication-provider>
+    		<security:user-service>
+    			<security:user name="admin" password="{noop}admin" authorities="ROLE_USER"/>
+    		</security:user-service>
+    	</security:authentication-provider>
+    </security:authentication-manager>
+    -->
+
+</beans>
