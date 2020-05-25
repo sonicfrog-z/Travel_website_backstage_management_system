@@ -60,6 +60,11 @@ public class UserInfo {
     }
 
     public String getStatusStr() {
+        if (status == 0) {
+            statusStr = "Inactivated";
+        } else if (status == 1) {
+            statusStr = "Activated";
+        }
         return statusStr;
     }
 

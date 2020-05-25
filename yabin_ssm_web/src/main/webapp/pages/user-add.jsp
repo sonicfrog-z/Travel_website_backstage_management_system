@@ -1,13 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <!-- Page meta -->
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
 <title>Data - AdminLTE2 MOD</title>
 <meta name="description" content="AdminLTE2 MOD">
 <meta name="keywords" content="AdminLTE2 MOD">
@@ -17,8 +15,7 @@
 	content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"
 	name="viewport">
 
-<link rel=“stylesheet”
-	href="${pageContext.request.contextPath}/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.min.css">
+
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/plugins/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet"
@@ -65,17 +62,16 @@
 	href="${pageContext.request.contextPath}/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.css">
 </head>
 
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="hold-transition skin-purple sidebar-mini">
 
 	<div class="wrapper">
 
 		<!-- Header -->
 		<jsp:include page="header.jsp"></jsp:include>
 		<!-- Header /-->
-
-		<!-- Nav-sidebar -->
+		<!-- Nav Sidebar -->
 		<jsp:include page="aside.jsp"></jsp:include>
-		<!-- Nav-sidebar /-->
+		<!-- Nav Sidebar /-->
 
 		<!-- Content Area -->
 		<div class="content-wrapper">
@@ -83,159 +79,68 @@
 			<!-- Content Header -->
 			<section class="content-header">
 			<h1>
-				Orders Admin <small>All Orders</small>
+				User Admin <small>Add User</small>
 			</h1>
 			<ol class="breadcrumb">
-				<li><a href="all-admin-index.html"><i
-						class="fa fa-dashboard"></i>Home</a></li>
-				<li><a href="all-order-manage-list.html">Orders Admin</a></li>
-				<li class="active">Order Detail</li>
+				<li><a href="${pageContext.request.contextPath}/index.jsp"><i
+						class="fa fa-dashboard"></i> Home</a></li>
+				<li><a
+					href="${pageContext.request.contextPath}/user/findAll.do">User Admin</a></li>
+				<li class="active">Add User</li>
 			</ol>
 			</section>
 			<!-- Content Header /-->
 
-			<!-- Content -->
-			<section class="content"> <!--Order Info-->
-			<div class="panel panel-default">
-				<div class="panel-heading">Order Info</div>
-				<div class="row data-type">
+			<form action="${pageContext.request.contextPath}/user/save.do"
+				method="post">
+				<!-- Content -->
+				<section class="content">
 
-					<div class="col-md-2 title">Order Number</div>
-					<div class="col-md-4 data">
-						<input type="text" class="form-control" placeholder="Order Number"
-							value="${orders.orderNum }" readonly="readonly">
-					</div>
-
-					<div class="col-md-2 title">Order Time</div>
-					<div class="col-md-4 data">
-						<div class="input-group date">
-							<div class="input-group-addon">
-								<i class="fa fa-calendar"></i>
-							</div>
-							<input type="text" class="form-control pull-right"
-								id="datepicker-a3" readonly="readonly"
-								value="${orders.orderTimeStr}">
-						</div>
-					</div>
-					<div class="col-md-2 title">Route Name</div>
-					<div class="col-md-4 data">
-						<input type="text" class="form-control" placeholder="Route Name"
-							value="${orders.product.productName }" readonly="readonly">
-					</div>
-
-					<div class="col-md-2 title">Departure City</div>
-					<div class="col-md-4 data">
-						<input type="text" class="form-control" placeholder="Departure City"
-							value="${orders.product.cityName }" readonly="readonly">
-					</div>
-
-					<div class="col-md-2 title">Departure Time</div>
-					<div class="col-md-4 data">
-						<div class="input-group date">
-							<div class="input-group-addon">
-								<i class="fa fa-calendar"></i>
-							</div>
-							<input type="text" class="form-control pull-right"
-								id="datepicker-a6" value="${orders.product.departureTimeStr}"
-								readonly="readonly">
-						</div>
-					</div>
-					<div class="col-md-2 title">Num of People</div>
-					<div class="col-md-4 data">
-						<input type="text" class="form-control" placeholder="Num of People"
-							value="${orders.peopleCount}" readonly="readonly">
-					</div>
-
-					<div class="col-md-2 title rowHeight2x">Remarks Info</div>
-					<div class="col-md-10 data rowHeight2x">
-						<textarea class="form-control" rows="3" placeholder="Remarks Info">
-							${orders.orderDesc }
-						</textarea>
-					</div>
-
-				</div>
-			</div>
-			<!--Order Info/--> <!--Traveller Info-->
-			<div class="panel panel-default">
-				<div class="panel-heading">Traveller Info</div>
-				<!--Data List-->
-				<table id="dataList"
-					class="table table-bordered table-striped table-hover dataTable">
-					<thead>
-						<tr>
-							<th class="">Traveller Type</th>
-							<th class="">Name</th>
-							<th class="">Sex</th>
-							<th class="">Phone Num</th>
-							<th class="">ID Type</th>
-							<th class="">ID Number</th>
-						</tr>
-					</thead>
-					<tbody>
-						<c:forEach var="traveller" items="${orders.travellers}">
-
-							<tr>
-								<td>${traveller.travellerTypeStr}</td>
-								<td><input type="text" size="10" value="${traveller.name }"
-									readonly="readonly"></td>
-								<td><input type="text" size="10" value="${traveller.sex }"
-									readonly="readonly"></td>
-								<td><input type="text" size="20"
-									value="${traveller.phoneNum }" readonly="readonly"></td>
-								<td><input type="text" size="15"
-									value="${traveller.credentialsTypeStr}" readonly="readonly"></td>
-								<td><input type="text" size="28"
-									value="${traveller.credentialsNum }" readonly="readonly"></td>
-							</tr>
-						</c:forEach>
-
-
-					</tbody>
-				</table>
-				<!--Data List/-->
-			</div>
-			<!--Traveller Info/--> <!--Contact Info-->
-			<div class="panel panel-default">
-				<div class="panel-heading">Contact Info</div>
-				<div class="row data-type">
-
-					<div class="col-md-2 title">Member</div>
-					<div class="col-md-4 data text">${orders.member.nickname }</div>
-
-					<div class="col-md-2 title">Contact Name</div>
-					<div class="col-md-4 data text">${orders.member.name}</div>
-
-					<div class="col-md-2 title">Phone Num</div>
-					<div class="col-md-4 data text">${orders.member.phoneNum}</div>
-
-					<div class="col-md-2 title">Email</div>
-					<div class="col-md-4 data text">${orders.member.email}</div>
-
-				</div>
-			</div>
-			<!--Contact Info/--> <!--Bill Info--> <c:if test="${orders.orderStatus==1}">
 				<div class="panel panel-default">
-					<div class="panel-heading">Bill Info</div>
+					<div class="panel-heading">User Info</div>
 					<div class="row data-type">
 
-						<div class="col-md-2 title">Pay Type</div>
-						<div class="col-md-4 data text">Online payment-${orders.payTypeStr}</div>
-
-						<div class="col-md-2 title">Amount</div>
-						<div class="col-md-4 data text">$${orders.product.productPrice}</div>
+						<div class="col-md-2 title">User Name</div>
+						<div class="col-md-4 data">
+							<input type="text" class="form-control" name="username"
+								placeholder="User Name" value="">
+						</div>
+						<div class="col-md-2 title">Password</div>
+						<div class="col-md-4 data">
+							<input type="password" class="form-control" name="password"
+								placeholder="Password" value="">
+						</div>
+						<div class="col-md-2 title">Email</div>
+						<div class="col-md-4 data">
+							<input type="text" class="form-control" name="email"
+								placeholder="Email" value="">
+						</div>
+						<div class="col-md-2 title">Phone Num</div>
+						<div class="col-md-4 data">
+							<input type="text" class="form-control" name="phoneNum"
+								placeholder="Phone Num" value="">
+						</div>
+						<div class="col-md-2 title">User Status</div>
+						<div class="col-md-4 data">
+							<select class="form-control select2" style="width: 100%"
+								name="status">
+								<option value="0" selected="selected">Closed</option>
+								<option value="1">Open</option>
+							</select>
+						</div>
 
 					</div>
 				</div>
-			</c:if> <!--Bill Info/--> <!--Tool Bar-->
-			<div class="box-tools text-center">
-
-				<button type="button" class="btn bg-default"
-					onclick="history.back(-1);">Back</button>
-			</div>
-			<!--Tool Bar/--> </section>
-			<!-- Content /-->
-
-
+				<!--Tools-->
+				<div class="box-tools text-center">
+					<button type="submit" class="btn bg-maroon">Save</button>
+					<button type="button" class="btn bg-default"
+						onclick="history.back(-1);">Back</button>
+				</div>
+				<!--Tools/-->
+				</section>
+				<!-- Content /-->
+			</form>
 		</div>
 		<!-- Content Area /-->
 
@@ -244,6 +149,7 @@
 		<!-- Footer /-->
 
 	</div>
+
 
 	<script
 		src="${pageContext.request.contextPath}/plugins/jQuery/jquery-2.2.3.min.js"></script>
@@ -333,16 +239,16 @@
 
 	<script>
 		$(document).ready(function() {
-			//  selection list
+			// Selection List
 			$(".select2").select2();
 
-			// WYSIHTML5 editor
+			// WYSIHTML5 Editor
 			$(".textarea").wysihtml5({
 				locale : 'zh-CN'
 			});
 		});
 
-		// Set sidebar active
+		// set sidebar activate
 		function setSidebarActive(tagUri) {
 			var liObj = $("#" + tagUri);
 			if (liObj.length > 0) {
@@ -350,30 +256,9 @@
 				liObj.addClass("active");
 			}
 		}
-
-		$(document).ready(function() {
-
-			// Activate sidebar
-			setSidebarActive("order-manage");
-
-			// checkbox
-			$("#dataList td input[type='checkbox']").iCheck({
-				checkboxClass : 'icheckbox_square-blue',
-				increaseArea : '20%'
-			});
-			// check all box
-			$("#selall").click(function() {
-				var clicks = $(this).is(':checked');
-				if (!clicks) {
-					$("#dataList td input[type='checkbox']").iCheck("uncheck");
-				} else {
-					$("#dataList td input[type='checkbox']").iCheck("check");
-				}
-				$(this).data("clicks", !clicks);
-			});
-		});
 	</script>
-</body>
 
+
+</body>
 
 </html>

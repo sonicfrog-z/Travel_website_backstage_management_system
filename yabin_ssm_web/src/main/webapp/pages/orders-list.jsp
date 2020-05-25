@@ -5,7 +5,7 @@
 <html>
 
 <head>
-<!-- 页面meta -->
+<!-- Page meta -->
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
@@ -98,7 +98,7 @@
 <!-- Ion Slider -->
 <!-- Bootstrap slider -->
 <!-- bootstrap-datetimepicker -->
-<!-- 页面meta /-->
+<!-- Page meta /-->
 
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/plugins/bootstrap/css/bootstrap.min.css">
@@ -233,10 +233,10 @@
 										<th class="sorting_asc">ID</th>
 										<th class="sorting_desc">Order Number</th>
 										<th class="sorting_asc sorting_asc_disabled">Product Name</th>
-										<th class="sorting_desc sorting_desc_disabled">金额</th>
+										<th class="sorting_desc sorting_desc_disabled">Amount</th>
 										<th class="sorting">下单时间</th>
 										<th class="text-center sorting">订单状态</th>
-										<th class="text-center">操作</th>
+										<th class="text-center">Operation</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -254,7 +254,7 @@
 											<td class="text-center">${orders.orderStatusStr }</td>
 											<td class="text-center">
 												<button type="button" class="btn bg-olive btn-xs">订单</button>
-												<button type="button" class="btn bg-olive btn-xs" onclick="location.href='${pageContext.request.contextPath}/orders/findById.do?id=${orders.id}'">详情</button>
+												<button type="button" class="btn bg-olive btn-xs" onclick="location.href='${pageContext.request.contextPath}/orders/findById.do?id=${orders.id}'">Detail</button>
 												<button type="button" class="btn bg-olive btn-xs">编辑</button>
 											</td>
 										</tr>
@@ -329,17 +329,17 @@
                     <div class="box-tools pull-right">
                         <ul class="pagination">
                             <li>
-                                <a href="#" aria-label="Previous">首页</a>
+                                <a href="#" aria-label="Previous">Home Page</a>
                             </li>
-                            <li><a href="#">上一页</a></li>
+                            <li><a href="#">Previous</a></li>
                             <li><a href="#">1</a></li>
                             <li><a href="#">2</a></li>
                             <li><a href="#">3</a></li>
                             <li><a href="#">4</a></li>
                             <li><a href="#">5</a></li>
-                            <li><a href="#">下一页</a></li>
+                            <li><a href="#">Next</a></li>
                             <li>
-                                <a href="#" aria-label="Next">尾页</a>
+                                <a href="#" aria-label="Next">Last Page</a>
                             </li>
                         </ul>
                     </div>
@@ -359,14 +359,7 @@
 		<!-- Content Area /-->
 
 		<!-- Footer -->
-		<footer class="main-footer">
-			<div class="pull-right hidden-xs">
-				<b>Version</b> 1.0.8
-			</div>
-			<strong>Copyright &copy; 2014-2017 <a
-				href="http://www.itcast.cn">研究院研发部</a>.
-			</strong> All rights reserved.
-		</footer>
+		<jsp:include page="footer.jsp"></jsp:include>
 		<!-- Footer /-->
 
 	</div>

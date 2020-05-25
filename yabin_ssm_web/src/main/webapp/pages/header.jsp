@@ -39,7 +39,7 @@
 							</div>
 							<div class="pull-right">
 								<a href="${pageContext.request.contextPath}/logout.do"
-									class="btn btn-default btn-flat">Logoff</a>
+									class="btn btn-default btn-flat">Logout</a>
 							</div>
 						</li>
 					</ul></li>

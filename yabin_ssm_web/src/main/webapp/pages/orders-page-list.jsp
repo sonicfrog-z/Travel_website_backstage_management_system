@@ -98,7 +98,7 @@
 <!-- Ion Slider -->
 <!-- Bootstrap slider -->
 <!-- bootstrap-datetimepicker -->
-<!-- 页面meta /-->
+<!-- Page meta /-->
 
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/plugins/bootstrap/css/bootstrap.min.css">
@@ -364,14 +364,7 @@
 		<!-- Content Area /-->
 
 		<!-- Footer -->
-		<footer class="main-footer">
-			<div class="pull-right hidden-xs">
-				<b>Version</b> 1.0.8
-			</div>
-			<strong>Copyright &copy; 2014-2017 <a
-					href="https://github.com/sonicfrog-z?tab=repositories">SonicFrog-Z</a>.
-			</strong> All rights reserved.
-		</footer>
+		<jsp:include page="footer.jsp"></jsp:include>
 		<!-- Footer /-->
 
 	</div>

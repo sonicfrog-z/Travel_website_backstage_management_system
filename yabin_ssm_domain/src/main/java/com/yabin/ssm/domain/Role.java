@@ -7,6 +7,8 @@ public class Role {
     private String id;
     private String roleName;
     private String roleDesc;
+    private List<Permission> permissions;
+    private List<UserInfo> users;
 
     public String getId() {
         return id;
@@ -47,7 +49,4 @@ public class Role {
     public void setUsers(List<UserInfo> users) {
         this.users = users;
     }
-
-    private List<Permission> permissions;
-    private List<UserInfo> users;
 }

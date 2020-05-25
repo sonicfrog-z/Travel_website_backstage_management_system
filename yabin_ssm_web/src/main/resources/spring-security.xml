@@ -29,7 +29,7 @@
                 login-processing-url="/login.do"
                 default-target-url="/index.jsp"
                 authentication-failure-url="/failure.jsp"
-                authentication-failure-forward-url="/pages/main.jsp"
+                authentication-failure-forward-url="/failure.jsp"
                 username-parameter="username"
                 password-parameter="password"
 
@@ -47,12 +47,12 @@
     <security:authentication-manager>
         <security:authentication-provider user-service-ref="userService">
             <!-- Configure the encryption method -->
-<!--            <security:password-encoder ref="passwordEncoder"/>-->
+            <security:password-encoder ref="passwordEncoder"/>
         </security:authentication-provider>
     </security:authentication-manager>
 
     <!-- Configure encryption class -->
-<!--    <bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>-->
+    <bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
 
     <!-- A quick start way: to store username and password in memory
     <security:authentication-manager>
