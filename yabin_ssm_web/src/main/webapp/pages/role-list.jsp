@@ -136,8 +136,8 @@
 											id="selall" type="checkbox" class="icheckbox_square-blue">
 										</th>
 										<th class="sorting_asc">ID</th>
-										<th class="sorting_desc">角色名称</th>
-										<th class="sorting_asc sorting_asc_disabled">描述</th>										
+										<th class="sorting_desc">Role Name</th>
+										<th class="sorting_asc sorting_asc_disabled">Description</th>
 										<th class="text-center">Operation</th>
 									</tr>
 								</thead>
@@ -151,7 +151,7 @@
 											<td>${role.roleDesc }</td>																				
 											<td class="text-center">
 												<a href="${pageContext.request.contextPath}/role/findById.do?id=${role.id}" class="btn bg-olive btn-xs">Detail</a>
-												<a href="${pageContext.request.contextPath}/user/findUserByIdAndAllRole.do?id=${user.id}" class="btn bg-olive btn-xs">Add Role</a>
+												<a href="${pageContext.request.contextPath}/role/findRoleByIdAndAllPermission.do?id=${role.id}" class="btn bg-olive btn-xs">Add Permission</a>
 											</td>
 										</tr>
 									</c:forEach>
