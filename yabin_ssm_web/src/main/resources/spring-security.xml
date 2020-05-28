@@ -19,9 +19,9 @@
     	auto-config="true"	No need to write your own login page, the framework provides a default login page
     	use-expressions="false"	Whether to use SPEL expression
     -->
-    <security:http auto-config="true" use-expressions="false">
+    <security:http auto-config="true" use-expressions="true">
         <!-- Configure interception rules. pattern="Request path rules" access="Role name which have permission" -->
-        <security:intercept-url pattern="/**" access="ROLE_USER,ROLE_ADMIN"/>
+        <security:intercept-url pattern="/**" access="hasAnyRole('ROLE_USER','ROLE_ADMIN')"/>
 
         <!-- Define pages to jump to -->
         <security:form-login
@@ -53,6 +53,7 @@
 
     <!-- Configure encryption class -->
     <bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
+<!--    <bean id="webExpressionHandler" class="org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler"/>-->
 
     <!-- A quick start way: to store username and password in memory
     <security:authentication-manager>
@@ -63,5 +64,7 @@
     	</security:authentication-provider>
     </security:authentication-manager>
     -->
+
+    <security:global-method-security jsr250-annotations="enabled" secured-annotations="enabled" pre-post-annotations="enabled"/>
 
 </beans>

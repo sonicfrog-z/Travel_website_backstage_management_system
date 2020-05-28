@@ -4,6 +4,7 @@ import com.yabin.ssm.domain.Role;
 import com.yabin.ssm.domain.UserInfo;
 import com.yabin.ssm.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -51,6 +52,7 @@ public class UserController {
     }
 
     @RequestMapping("/findAll.do")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ModelAndView findAll () throws Exception {
         ModelAndView mv = new ModelAndView();
         List<UserInfo> userInfoList = userService.findAll();
@@ -60,6 +62,7 @@ public class UserController {
     }
 
     @RequestMapping("/save.do")
+    @PreAuthorize("authentication.principal.username == 'Tom'")
     public String save(UserInfo userInfo) throws Exception {
         userService.save(userInfo);
         return "redirect:findAll.do";
